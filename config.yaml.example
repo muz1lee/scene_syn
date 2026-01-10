@@ -1,0 +1,30 @@
+# SceneThesis 配置文件示例
+# 复制此文件为 config.yaml 并修改配置
+
+# 场景描述
+prompt: "A messy bedroom with a study nook"
+
+# 模型配置
+model_name: "gemini-2.0-flash-exp"  # 可选: gemini-1.5-flash, gemini-1.5-pro
+
+# 资产库（可用的物体类别）
+db_assets:
+  - bed
+  - sofa
+  - desk
+  - chair
+  - table
+  - laptop
+  - plant
+  - lamp
+  - bookshelf
+  - cabinet
+  - rug
+  - pillow
+  - nightstand
+  - dresser
+  - mirror
+  - curtain
+
+# 输出目录
+output_dir: "scenethesis/output"

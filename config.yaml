@@ -1,0 +1,21 @@
+prompt: "A bathroom with a washing machine"
+model_name: "gemini-2.5-pro"
+db_assets:
+  - washing machine
+  - chair
+  - toilet
+  - clothes
+  - clothes dryer
+  - toothbrash
+  - shower
+  - sink
+  - mirror
+  - towel
+  - bathrobe
+  - bath towel
+  - bath mat
+  - bath tub
+env_maps:
+  - sunny.hdr
+  - cloudy.hdr
+output_dir: scenethesis/output
