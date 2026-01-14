@@ -7,20 +7,24 @@ import sys
 from pathlib import Path
 
 # 手动加载 .env
-env_file = Path(__file__).parent / ".env"
-if env_file.exists():
-    for line in env_file.read_text().splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            key, value = line.split("=", 1)
-            os.environ[key] = value.strip()
+SCRIPT_DIR = Path(__file__).parent
+ROOT_DIR = SCRIPT_DIR.parent
+
+for env_candidate in [SCRIPT_DIR / ".env", ROOT_DIR / ".env"]:
+    if env_candidate.exists():
+        for line in env_candidate.read_text().splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, value = line.split("=", 1)
+                os.environ[key] = value.strip()
 
 api_key = os.getenv("GEMINI_API_KEY")
-print(f"🔑 API Key: {api_key[:20]}...{api_key[-10:] if api_key else 'NOT FOUND'}")
-
 if not api_key:
+    print("🔑 API Key: NOT FOUND")
     print("❌ 未找到 GEMINI_API_KEY")
     sys.exit(1)
+
+print(f"🔑 API Key: {api_key[:8]}...{api_key[-4:]}")
 
 try:
     import google.genai as genai

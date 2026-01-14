@@ -17,11 +17,14 @@
 - [x] 数据契约：`plan` 结构包含 mode/anchor/objects/detailed_description，供 Phase 2 消费。
 
 ## Phase 2 · Visual Refinement
-- [ ] Guidance 图生成：Gemini 或视觉模型生成 640x640 参考图。
-- [ ] 场景图构建：Grounded-SAM + Depth Pro 推理链封装，输出节点 pose/bbox。
+- [x] Guidance 图生成：接入 Gemini 3 Pro Image 生成 640x640 PNG 并写入 `scenethesis/output`，结构可扩展至其他模型。
+- [~] 场景图构建：Grounded-SAM（SAM3 替代）+ Depth Pro 推理链，输出节点 pose/bbox。
+  - [x] 逻辑轨：Gemini API（非 Vertex）封装 LogicalHierarchyPlanner，生成 Ground/Parent/Child 层级契约。
+  - [ ] 几何轨：SAM3 Endpoint 已封装客户端，等待接入真实 Depth Pro API 与资产库相机参数。
+  - [ ] 合并：SceneGraphBuilder 已写入 pose/bbox/depth_stats，占位数据可回退；需补 mask/crop 持久化。
 - [ ] 资产检索：CLIP + 数据库 embedding 检索，记录命中资产 ID。
 - [ ] 环境贴图选择：Gemini 3 Flash 基于描述选择 HDR。
-- [ ] 输出格式：`image_guidance`、`scene_layout`、`environment_map`。
+- [ ] 输出格式：`image_guidance`、`scene_layout`、`environment_map`（SceneGraphBuilder 输出已对齐，CLIP/EnvMap 尚未接入）。
 
 ## Phase 3 · Physics Optimization
 - [ ] Scene Graph 参数化：把 layout dict 映射到可训练的 `nn.Module`。

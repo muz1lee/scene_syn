@@ -5,7 +5,7 @@
 ## 项目状态
 
 - ✅ **Phase 1: Coarse Scene Planning** - 已完成
-- 🔄 **Phase 2: Visual Refinement** - Guidance 图生成 + Scene Graph 基础已落地（Gemini 逻辑轨 + SAM3/Depth Pro 客户端），资产检索/环境图待接入
+- 🔄 Phase 2: Visual Refinement - 开发中
 - 🔄 Phase 3: Physics Optimization - 待开发
 - 🔄 Phase 4: Scene Judge - 待开发
 
@@ -18,12 +18,6 @@
 - ✅ 资产库验证和语义映射
 - ✅ 描述增强功能（统一输出格式）
 - ✅ 完整的输出验证和错误处理
-
-### Phase 2 - 视觉细化（部分完成）
-- ✅ Guidance 图生成：Gemini 3 Pro Image 输出 640×640 PNG，落盘到 `scenethesis/output`
-- ✅ Scene Graph 逻辑轨：`LogicalHierarchyPlanner` 调用 Gemini API（可配模型）生成 Ground / Parent / Child 关系
-- ✅ Scene Graph 几何轨：封装 `Sam3Client`（取代 Grounded-SAM）与 `DepthProClient`；可在配置中填入真实 endpoint
-- 🔜 资产检索（CLIP）与环境贴图选择、Depth Pro 真值 lifting、mask/crop 缓存
 
 ## 快速开始
 
@@ -68,11 +62,11 @@ output_dir: "scenethesis/output"
 ### 运行
 
 ```bash
-# 运行主流程（Phase1 + Phase2）
-python -m scenethesis.main
+# 测试 API 连接
+python test_api.py
 
-# 或从已有 planner 输出继续执行 Refiner
-python test_files/test_refiner_from_json.py --plan scenethesis/output/planner_output.json
+# 运行 Phase 1 规划
+python -m scenethesis.main
 ```
 
 ### 输出示例
@@ -92,22 +86,18 @@ python test_files/test_refiner_from_json.py --plan scenethesis/output/planner_ou
 scene_syn/
 ├── scenethesis/
 │   ├── modules/
-│   │   ├── planner.py        # Phase 1: 粗级规划
-│   │   ├── refiner.py        # Phase 2: Guidance + Scene Graph
-│   │   ├── physics.py        # Phase 3: 物理优化（待实现）
-│   │   └── judge.py          # Phase 4: 场景裁判（待实现）
+│   │   ├── planner.py      # Phase 1: 粗级规划
+│   │   ├── refiner.py      # Phase 2: 视觉细化（待实现）
+│   │   ├── physics.py      # Phase 3: 物理优化（待实现）
+│   │   └── judge.py        # Phase 4: 场景裁判（待实现）
 │   ├── services/
-│   │   ├── providers.py      # Gemini Provider & 图像 Provider
-│   │   ├── scene_graph.py    # LogicalHierarchyPlanner + SceneGraphBuilder
-│   │   ├── sam3_client.py    # SAM3 HTTP 客户端
-│   │   └── depth_pro_client.py # Depth Pro HTTP 客户端
-│   └── main.py               # 主入口
+│   │   └── providers.py    # LLM Provider (Gemini)
+│   └── main.py             # 主入口
 ├── docs/
-│   ├── repro_checklist.md    # 复现检查清单
-│   ├── sdk_migration.md      # SDK 迁移文档
-│   └── replication_plan.md   # 复现计划与进展
-├── config.yaml               # 配置文件（含 Phase2.scene_graph 配置）
-├── test_files/               # 阶段性测试脚本
+│   ├── repro_checklist.md  # 复现检查清单
+│   └── sdk_migration.md    # SDK 迁移文档
+├── config.yaml             # 配置文件
+├── test_api.py             # API 测试脚本
 └── README.md
 ```
 
@@ -157,10 +147,10 @@ scene_syn/
 ## 测试
 
 ```bash
-# 测试 Refiner（读取 planner 输出并生成 Guidance + Scene Graph）
-python test_files/test_refiner_from_json.py
+# 测试 API 连接
+python test_api.py
 
-# 运行一体化流程
+# 测试 Phase 1 规划
 python -m scenethesis.main
 ```
 
