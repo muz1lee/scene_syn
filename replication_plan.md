@@ -290,12 +290,28 @@ Step 1: Image Guidance (以图引路)
 - 目的： 利用生成模型在大规模数据集学到的“物体共现”和“空间关系”，生成一张看起来很合理的 2D 参考图。这张图就是后续 3D 布局的蓝图。
 
 Step 2: Scene Graph Generation (双轨场景图构建)
-- 逻辑轨 (GPT-4o): 定义场景树结构（谁是地基 Ground，谁是父节点 Parent，谁是子节点 Child）。注意： 这一步不涉及像素，只涉及物体间的层级逻辑。
-- 几何轨 (Grounded-SAM + Depth Pro): 处理像素。
-  - Grounded-SAM: 分割 Mask + 裁剪图片 (Cropped Images)。
-  - Depth Pro: 估算 Metric Depth。
-  - Lifting: 2D 像素 -> 3D 点云 -> 3D Bounding Box。
-- 合并: 将几何坐标填入逻辑树中。
+- 逻辑轨 (Gemini API 实现，原设计 GPT-4o): 定义场景树结构（谁是地基 Ground，谁是 Parent/Child）。当前通过 `LogicalHierarchyPlanner` + `HIERARCHY_SYSTEM_PROMPT` 产出严格 JSON Adjacency List，已在 `scenethesis/services/scene_graph.py` 落地并可配置模型。
+- 几何轨 (Grounded-SAM → SAM3 + Depth Pro): 处理像素。
+  - SAM3 Endpoint: 取代原 Grounded-SAM，通过 `Sam3Client` 发送图像 base64 + prompt，获取 mask/bbox。
+  - Depth Pro: 估算 Metric Depth。`DepthProClient` 已封装 API；待接入真实 endpoint 及相机参数，即可完成 lifting。
+  - Lifting: 2D 像素 -> 3D 点云 -> 3D Bounding Box。当前 SceneGraphBuilder 基于 bbox + depth stats 输出 `translation/bbox`，后续替换为真实点云拟合。
+- 合并: SceneGraphBuilder 将逻辑轨角色同步到几何节点，并写入 `scene_layout`（含 pose/bbox/depth_stats），缺失部分会 fallback 占位 pose。下一阶段需补充 mask/crop 缓存供 CLIP 检索。
+
+> 当前 Status（2025-02）：Phase2 Guidance + Scene Graph 代码路径已完成，可通过 `python -m scenethesis.main` 或 `test_files/test_refiner_from_json.py` 执行。待办事项包括：Depth Pro 真值接入、裁剪策略、CLIP asset retrieval、环境图选择与 mask/crop 落盘。
+
+核心 Prompt（HIERARCHY_SYSTEM_PROMPT）示例：
+
+```text
+You are a Spatial Logic Architect for 3D Scene Generation.
+Your task is to organize a flat list of objects into a hierarchical Scene Graph based on physical support relationships.
+...
+{
+  "Ground": ["Table", "Chair", "Rug"],
+  "Table": ["Lamp", "Laptop"],
+  "Chair": ["Cushion"],
+  "Rug": []
+}
+```
 
 Step 3: Asset Retrieval (资产检索)
 - 动作 A (物体检索): 使用 CLIP (ViT-L/14)。

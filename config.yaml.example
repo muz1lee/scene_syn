@@ -28,3 +28,34 @@ db_assets:
 
 # 输出目录
 output_dir: "scenethesis/output"
+
+# 环境贴图
+env_maps:
+  - sunny.hdr
+  - cloudy.hdr
+
+# Vertex AI 配置（调用 Gemini “Nano Banana”等 Vertex 模型）
+vertex:
+  enabled: true
+  project_id: "your-gcp-project"
+  location: "us-central1"
+
+# Phase 2 配置
+phase2:
+  image_provider: "gemini"
+  image_model: "gemini-3.0-pro-image"
+  image_model_fallbacks:
+    - "imagen-3.0-generate-002"
+  guidance_size: [640, 640]
+  image_format: "png"
+  guidance_scale: 7.0
+  api_version: "v1beta"
+  output_dir: "scenethesis/output"
+  scene_graph:
+    logic_model: "gemini-2.0-flash-exp"
+    sam3:
+      endpoint: "http://127.0.0.1:5081/segment"
+      text_prompt: ""  # 为空则由逻辑轨提示词组合
+    depth_pro:
+      endpoint: "http://127.0.0.1:6006/infer"
+      api_key: ""
