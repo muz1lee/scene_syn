@@ -367,12 +367,23 @@ class SceneLayoutGenerator:
                     # 应用缩放
                     mesh.apply_scale(obj.scale)
 
-                    # 应用旋转和平移
-                    transform = trimesh.transformations.compose_matrix(
-                        translate=obj.position,
+                    # 应用旋转(只旋转,不平移)
+                    rotation_transform = trimesh.transformations.compose_matrix(
                         angles=np.radians(obj.rotation),
                     )
-                    mesh.apply_transform(transform)
+                    mesh.apply_transform(rotation_transform)
+
+                    # 关键修复: 旋转后,将mesh的底部对齐到Y=0
+                    bounds = mesh.bounds
+                    min_y = bounds[0][1]  # 最低点的Y坐标
+
+                    # 如果最低点不在Y=0,平移mesh使底部对齐到Y=0
+                    if min_y < -0.001:
+                        mesh.apply_translation([0, -min_y, 0])
+                        print(f"  -> 调整底部: 平移Y {-min_y:.3f}m 使底部对齐地面")
+
+                    # 最后平移到目标位置
+                    mesh.apply_translation(obj.position)
 
                     trimesh_scene.add_geometry(
                         mesh,
