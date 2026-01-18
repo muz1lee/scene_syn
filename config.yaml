@@ -40,3 +40,9 @@ phase2:
     sam3:
       endpoint: "http://101.132.143.105:5081/segment"
       text_prompt: ""
+<<<<<<< HEAD
+=======
+    depth_pro:
+      endpoint: "http://localhost:7007/infer"
+      api_key: ""
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac

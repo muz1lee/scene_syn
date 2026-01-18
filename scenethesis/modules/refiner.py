@@ -2,9 +2,15 @@ from __future__ import annotations
 
 from datetime import datetime
 from pathlib import Path
+<<<<<<< HEAD
 from typing import Any, Dict, List, Optional, Tuple
 
 from scenethesis.services.providers import ImageGenerationProvider, LLMProvider
+=======
+from typing import Any, Dict, List, Tuple
+
+from scenethesis.services.providers import ImageGenerationProvider
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 from scenethesis.services.scene_graph import SceneGraphBuilder
 
 
@@ -22,7 +28,10 @@ class VisualRefinementModule:
         guidance_size: Tuple[int, int] = (640, 640),
         image_format: str = "png",
         scene_graph_builder: SceneGraphBuilder | None = None,
+<<<<<<< HEAD
         llm_provider: Optional[LLMProvider] = None,
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
     ) -> None:
         self.asset_db = asset_database
         self.env_db = env_map_database
@@ -32,14 +41,21 @@ class VisualRefinementModule:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.scene_graph_builder = scene_graph_builder
+<<<<<<< HEAD
         self.llm_provider = llm_provider
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 
     def process_layout(self, coarse_plan: Dict[str, Any]) -> Dict[str, Any]:
         prompt = self._build_guidance_prompt(coarse_plan)
         image_bytes = self.image_provider.generate_image(prompt, self.guidance_size)
         guidance_path = self._save_image(image_bytes)
         scene_layout = self._build_scene_graph(coarse_plan, image_bytes)
+<<<<<<< HEAD
         env_map = self._select_environment_map(coarse_plan)
+=======
+        env_map = self._select_environment_map()
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
         width, height = self.guidance_size
         return {
             "image_guidance": {
@@ -94,6 +110,7 @@ class VisualRefinementModule:
                 }
             )
         return layout
+<<<<<<< HEAD
 
     def _select_environment_map(self, coarse_plan: Dict[str, Any]) -> str:
         """
@@ -154,3 +171,8 @@ class VisualRefinementModule:
         except Exception as exc:
             print(f"⚠️ [Refiner] 环境贴图选择失败: {exc}")
             return self.env_db[0]
+=======
+
+    def _select_environment_map(self) -> str:
+        return self.env_db[0] if self.env_db else "default_env.hdr"
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac

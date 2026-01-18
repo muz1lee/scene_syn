@@ -20,9 +20,10 @@ def load_scene_graph(scene_graph_path: str):
 
 def main():
     # 配置路径
-    scene_graph_path = "scenethesis/output/scene_graph_with_assets.json"
-    output_json_path = "scenethesis/output/scene_layout_3d.json"
-    output_gltf_path = "scenethesis/output/scene_layout_3d.gltf"
+    scene_graph_path = "scenethesis/output/scene_graph_with_assets_depth.json"
+    output_json_path = "/home/knowin-wenqian/scene_syn/output_0118/scene_layout_3d.json"
+    output_gltf_path = "/home/knowin-wenqian/scene_syn/output_0118/scene_layout_3d.gltf"
+    output_glb_path = "/home/knowin-wenqian/scene_syn/output_0118/scene_layout_3d.glb"
 
     print(f"{'='*60}")
     print("3D场景布局生成")
@@ -93,12 +94,20 @@ def main():
         print(f"⚠️  GLTF导出失败: {e}")
         print(f"   提示: 需要安装trimesh库 (pip install trimesh)")
 
+    # 导出为GLB (单文件,包含所有数据)
+    try:
+        generator.export_to_gltf(scene_3d, output_glb_path)
+        print(f"✓ GLB导出成功: {output_glb_path}")
+    except Exception as e:
+        print(f"⚠️  GLB导出失败: {e}")
+
     print(f"\n{'='*60}")
     print("完成")
     print(f"{'='*60}")
     print(f"3D布局已生成并保存到:")
     print(f"  - {output_json_path}")
     print(f"  - {output_gltf_path}")
+    print(f"  - {output_glb_path}")
     print()
 
 

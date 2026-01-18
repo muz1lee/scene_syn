@@ -1,0 +1,1094 @@
+{
+  "anchor": "washing machine",
+  "room_size": {
+    "width": 10.0,
+    "height": 3.0,
+    "depth": 10.0
+  },
+  "objects": [
+    {
+      "label": "washing machine",
+      "asset_id": "b3eeaeb090e2450eaf6428f5476d57a5",
+      "asset_path": null,
+      "position": {
+        "x": 1.854,
+        "y": 1.9857311248779297,
+        "z": 7.252999999999999
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 210.27551081301212
+      },
+      "scale": {
+        "x": 0.88816,
+        "y": 0.4575,
+        "z": 3.34402
+      },
+      "parent": "ground",
+      "metadata": {
+        "role": "parent",
+        "confidence": 0.9543085694313049,
+        "bbox_pixel": [
+          317,
+          693,
+          727,
+          1535
+        ],
+        "asset_metadata": {
+          "category": "washing machine",
+          "category_max_scale": 0.76,
+          "category_min_scale": 0.61,
+          "description": "A gray washing machine.",
+          "pose_z_rot_angle": 3.67,
+          "ref_category": "WashingMachine",
+          "scale": 0.61,
+          "uid": "b3eeaeb090e2450eaf6428f5476d57a5",
+          "z_axis_scale": false,
+          "description_auto": "a small white cube-shaped cabinet.",
+          "size": [
+            60,
+            60,
+            85
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": true,
+          "onObject": false,
+          "onWall": false,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "b3eeaeb090e2450eaf6428f5476d57a5",
+              "objectType": "Undefined",
+              "primaryProperty": "Moveable",
+              "secondaryProperties": [
+                "Receptacle"
+              ],
+              "boundingBox": {
+                "min": {
+                  "x": -0.3341106532348528,
+                  "y": 0.0,
+                  "z": -0.3168309600798837
+                },
+                "max": {
+                  "x": 0.33740146562529083,
+                  "y": 0.7288393804776495,
+                  "z": 0.31690948367442784
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "clothes dryer",
+      "asset_id": "ea9b6ffa62d146bd8e8a46b51e406a52",
+      "asset_path": null,
+      "position": {
+        "x": 1.907,
+        "y": 2.0002171993255615,
+        "z": 2.3400000000000003
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 359.817495342157
+      },
+      "scale": {
+        "x": 0.611,
+        "y": 0.375,
+        "z": 2.347
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.5263806581497192,
+        "bbox_pixel": [
+          365,
+          -1,
+          709,
+          720
+        ],
+        "asset_metadata": {
+          "category": "cloth",
+          "category_max_scale": 0.68,
+          "category_min_scale": 0.5,
+          "description": "A six section board with colored and patterned, folded cloth, and a picture of a dress standing up in the last section.",
+          "pose_z_rot_angle": 6.28,
+          "ref_category": "Cloth",
+          "scale": 0.5,
+          "uid": "ea9b6ffa62d146bd8e8a46b51e406a52",
+          "z_axis_scale": false,
+          "description_auto": "wooden display featuring a picture of a woman, cards, flowers, and a floral pattern, with additional items such as clothes and paper napkins.",
+          "size": [
+            200,
+            136,
+            88
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": true,
+          "onObject": false,
+          "onWall": false,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "ea9b6ffa62d146bd8e8a46b51e406a52",
+              "objectType": "Undefined",
+              "primaryProperty": "CanPickup",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -1.008904218673706,
+                  "y": -0.007056146860122681,
+                  "z": -0.6736760139465333
+                },
+                "max": {
+                  "x": 1.0088999271392822,
+                  "y": 0.867723822593689,
+                  "z": 0.666823983192444
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "toilet",
+      "asset_id": "e23978f8a7c64447927cfdc175cb9312",
+      "asset_path": null,
+      "position": {
+        "x": 3.429,
+        "y": 3.5698258876800537,
+        "z": 5.807
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 89.95437383553924
+      },
+      "scale": {
+        "x": 0.15447,
+        "y": 0.14250000000000002,
+        "z": 0.5962200000000001
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9673673510551453,
+        "bbox_pixel": [
+          851,
+          651,
+          1080,
+          1133
+        ],
+        "asset_metadata": {
+          "category": "toilet tissue",
+          "category_max_scale": 0.23,
+          "category_min_scale": 0.17,
+          "description": "Roll of toilet paper on silver roll holder`.",
+          "pose_z_rot_angle": 1.57,
+          "ref_category": "ToiletPaper",
+          "scale": 0.19,
+          "uid": "e23978f8a7c64447927cfdc175cb9312",
+          "z_axis_scale": false,
+          "description_auto": "White toilet paper roll on a holder.",
+          "size": [
+            12,
+            12,
+            10
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": false,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "e23978f8a7c64447927cfdc175cb9312",
+              "objectType": "Undefined",
+              "primaryProperty": "CanPickup",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.058551933928812076,
+                  "y": -0.0007767665073113973,
+                  "z": -0.0599749615923025
+                },
+                "max": {
+                  "x": 0.05854500633890772,
+                  "y": 0.13196654114508993,
+                  "z": 0.060253622264538925
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "sink",
+      "asset_id": "1f4df013f53a44a6bd18f7d041dd60a6",
+      "asset_path": null,
+      "position": {
+        "x": 7.805,
+        "y": 2.1925783157348633,
+        "z": 4.987
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 390.1842584840906
+      },
+      "scale": {
+        "x": 0.93789,
+        "y": 0.3825,
+        "z": 0.59109
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9338430166244507,
+        "bbox_pixel": [
+          1939,
+          677,
+          2457,
+          855
+        ],
+        "asset_metadata": {
+          "category": "sink",
+          "category_max_scale": 0.72,
+          "category_min_scale": 0.48,
+          "description": "A modern looking bathroom sink that has a gray top and a black faucet. it has one shelf below it that looks like it is made of glass.",
+          "pose_z_rot_angle": 6.81,
+          "ref_category": "Sink",
+          "scale": 0.51,
+          "uid": "1f4df013f53a44a6bd18f7d041dd60a6",
+          "z_axis_scale": false,
+          "description_auto": "a sink with a blue shelf.",
+          "size": [
+            60,
+            53,
+            85
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": false,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "1f4df013f53a44a6bd18f7d041dd60a6",
+              "objectType": "Undefined",
+              "primaryProperty": "Static",
+              "secondaryProperties": [
+                "Receptacle"
+              ],
+              "boundingBox": {
+                "min": {
+                  "x": -0.5060104680378119,
+                  "y": -0.008954538336952582,
+                  "z": -0.27009919108876024
+                },
+                "max": {
+                  "x": 0.5074969506614359,
+                  "y": 1.1371325457333243,
+                  "z": 0.2683615157220424
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "mirror",
+      "asset_id": "5ca85c243dc7429d8636b6bfdb666ee1",
+      "asset_path": null,
+      "position": {
+        "x": 8.23,
+        "y": 2.271117925643921,
+        "z": 1.188
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 210.27551081301212
+      },
+      "scale": {
+        "x": 0.7206400000000001,
+        "y": 0.48,
+        "z": 1.52064
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.7599881291389465,
+        "bbox_pixel": [
+          2159,
+          0,
+          2476,
+          365
+        ],
+        "asset_metadata": {
+          "category": "mirror",
+          "category_max_scale": 1.8,
+          "category_min_scale": 0.34,
+          "description": "A circular black mirror with two open semi circle doors on a white base.",
+          "pose_z_rot_angle": 3.67,
+          "ref_category": "Painting",
+          "scale": 0.64,
+          "uid": "5ca85c243dc7429d8636b6bfdb666ee1",
+          "z_axis_scale": true,
+          "description_auto": "A white marble circular makeup mirror.",
+          "size": [
+            30,
+            15,
+            22
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": false,
+          "onObject": true,
+          "onWall": false,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "5ca85c243dc7429d8636b6bfdb666ee1",
+              "objectType": "Undefined",
+              "primaryProperty": "Static",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.1433934763795081,
+                  "y": -0.0010008254195426973,
+                  "z": -0.1090763977037301
+                },
+                "max": {
+                  "x": 0.15282810610407055,
+                  "y": 0.22890834952262692,
+                  "z": 0.035361698809675324
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "shower",
+      "asset_id": "f70bc7c1ed74430c867f320f2e8e3cef",
+      "asset_path": null,
+      "position": {
+        "x": 6.787999999999999,
+        "y": 3.698662757873535,
+        "z": 3.154
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 330.0236899953542
+      },
+      "scale": {
+        "x": 0.7968000000000001,
+        "y": 0.8999999999999999,
+        "z": 5.523599999999999
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.635789692401886,
+        "bbox_pixel": [
+          1818,
+          131,
+          2005,
+          838
+        ],
+        "asset_metadata": {
+          "category": "shower head",
+          "category_max_scale": 1.2,
+          "category_min_scale": 0.93,
+          "description": "The head of a shower that could be held in a hand.",
+          "pose_z_rot_angle": 5.76,
+          "ref_category": "ShowerHead",
+          "scale": 1.2,
+          "uid": "f70bc7c1ed74430c867f320f2e8e3cef",
+          "z_axis_scale": false,
+          "description_auto": "White shower head with attached hose.",
+          "size": [
+            12,
+            8,
+            25
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": false,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "f70bc7c1ed74430c867f320f2e8e3cef",
+              "objectType": "Undefined",
+              "primaryProperty": "Static",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.05670809349897874,
+                  "y": -0.0006321993057204373,
+                  "z": -0.04042328458211283
+                },
+                "max": {
+                  "x": 0.04725208550556975,
+                  "y": 0.3875777929473637,
+                  "z": 0.02796831968471713
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "bath tub",
+      "asset_id": "28fbe6cf073b44639a92d2e213ca0c30",
+      "asset_path": null,
+      "position": {
+        "x": 5.634,
+        "y": 4.178796291351318,
+        "z": 5.452
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 89.95437383553924
+      },
+      "scale": {
+        "x": 2.7520000000000002,
+        "y": 0.645,
+        "z": 0.38614
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.8294492363929749,
+        "bbox_pixel": [
+          1136,
+          803,
+          2037,
+          872
+        ],
+        "asset_metadata": {
+          "category": "bat",
+          "category_max_scale": 0.98,
+          "category_min_scale": 0.69,
+          "description": null,
+          "pose_z_rot_angle": 1.57,
+          "ref_category": "BaseballBat",
+          "scale": 0.86,
+          "uid": "28fbe6cf073b44639a92d2e213ca0c30",
+          "z_axis_scale": false,
+          "description_auto": "A wooden baseball bat in 3D.",
+          "size": [
+            86,
+            6,
+            6
+          ],
+          "closet_objaverse_plus_asset": {
+            "uid": "d8bfd9f394104e07a844e956aee6905f",
+            "description": "A wooden baseball bat with a flat end.",
+            "similarity score": 0.7093418836593628
+          },
+          "size_annotated_by": "gpt-3.5",
+          "onFloor": true,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "refer to closet objaverse plus asset",
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "28fbe6cf073b44639a92d2e213ca0c30",
+              "objectType": "Undefined",
+              "primaryProperty": "Undefined",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.03312974989742533,
+                  "y": -0.0014013281959366697,
+                  "z": -0.3805720011170559
+                },
+                "max": {
+                  "x": 0.030836671010658068,
+                  "y": 0.06262114530968507,
+                  "z": 0.38398325508286585
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "bath mat",
+      "asset_id": "28fbe6cf073b44639a92d2e213ca0c30",
+      "asset_path": null,
+      "position": {
+        "x": 5.526999999999999,
+        "y": 2.6021807193756104,
+        "z": 8.642999999999999
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 89.95437383553924
+      },
+      "scale": {
+        "x": 3.2215599999999998,
+        "y": 0.645,
+        "z": 1.2710799999999998
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9441158771514893,
+        "bbox_pixel": [
+          1029,
+          1214,
+          2084,
+          1441
+        ],
+        "asset_metadata": {
+          "category": "bat",
+          "category_max_scale": 0.98,
+          "category_min_scale": 0.69,
+          "description": null,
+          "pose_z_rot_angle": 1.57,
+          "ref_category": "BaseballBat",
+          "scale": 0.86,
+          "uid": "28fbe6cf073b44639a92d2e213ca0c30",
+          "z_axis_scale": false,
+          "description_auto": "A wooden baseball bat in 3D.",
+          "size": [
+            86,
+            6,
+            6
+          ],
+          "closet_objaverse_plus_asset": {
+            "uid": "d8bfd9f394104e07a844e956aee6905f",
+            "description": "A wooden baseball bat with a flat end.",
+            "similarity score": 0.7093418836593628
+          },
+          "size_annotated_by": "gpt-3.5",
+          "onFloor": true,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "refer to closet objaverse plus asset",
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "28fbe6cf073b44639a92d2e213ca0c30",
+              "objectType": "Undefined",
+              "primaryProperty": "Undefined",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.03312974989742533,
+                  "y": -0.0014013281959366697,
+                  "z": -0.3805720011170559
+                },
+                "max": {
+                  "x": 0.030836671010658068,
+                  "y": 0.06262114530968507,
+                  "z": 0.38398325508286585
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "chair",
+      "asset_id": "1dae31a7fa54440688eebaa0376c56d3",
+      "asset_path": null,
+      "position": {
+        "x": 8.381,
+        "y": 1.5003069639205933,
+        "z": 7.624
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 390.1842584840906
+      },
+      "scale": {
+        "x": 2.244,
+        "y": 0.6000000000000001,
+        "z": 3.8128
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9501634240150452,
+        "bbox_pixel": [
+          1965,
+          805,
+          2755,
+          1537
+        ],
+        "asset_metadata": {
+          "category": "chair",
+          "category_max_scale": 1.5,
+          "category_min_scale": 0.63,
+          "description": null,
+          "pose_z_rot_angle": 6.81,
+          "ref_category": "Chair",
+          "scale": 0.8,
+          "uid": "1dae31a7fa54440688eebaa0376c56d3",
+          "z_axis_scale": true,
+          "description_auto": "a wooden chair with a slanted back and legs.",
+          "size": [
+            60,
+            50,
+            80
+          ],
+          "closet_objaverse_plus_asset": {
+            "uid": "64cdeb372f564a82ad2b0008290be08b",
+            "description": "A wooden chair with a tall three slat back.",
+            "similarity score": 0.8846627473831177
+          },
+          "size_annotated_by": "gpt-3.5",
+          "onFloor": true,
+          "onObject": false,
+          "onWall": false,
+          "onCeiling": false,
+          "location_annotated_by": "refer to closet objaverse plus asset",
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "1dae31a7fa54440688eebaa0376c56d3",
+              "objectType": "Undefined",
+              "primaryProperty": "Undefined",
+              "secondaryProperties": [
+                "Receptacle"
+              ],
+              "boundingBox": {
+                "min": {
+                  "x": -0.2581199890829649,
+                  "y": -0.0041465335571170174,
+                  "z": -0.25803141858510953
+                },
+                "max": {
+                  "x": 0.2582046850463784,
+                  "y": 0.9163930586646579,
+                  "z": 0.2580257087448794
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "clothes",
+      "asset_id": "ea9b6ffa62d146bd8e8a46b51e406a52",
+      "asset_path": null,
+      "position": {
+        "x": 2.727,
+        "y": 2.9599807262420654,
+        "z": 3.786
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 359.817495342157
+      },
+      "scale": {
+        "x": 0.2665,
+        "y": 0.375,
+        "z": 2.92
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.929826557636261,
+        "bbox_pixel": [
+          693,
+          133,
+          843,
+          1030
+        ],
+        "asset_metadata": {
+          "category": "cloth",
+          "category_max_scale": 0.68,
+          "category_min_scale": 0.5,
+          "description": "A six section board with colored and patterned, folded cloth, and a picture of a dress standing up in the last section.",
+          "pose_z_rot_angle": 6.28,
+          "ref_category": "Cloth",
+          "scale": 0.5,
+          "uid": "ea9b6ffa62d146bd8e8a46b51e406a52",
+          "z_axis_scale": false,
+          "description_auto": "wooden display featuring a picture of a woman, cards, flowers, and a floral pattern, with additional items such as clothes and paper napkins.",
+          "size": [
+            200,
+            136,
+            88
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": true,
+          "onObject": false,
+          "onWall": false,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "ea9b6ffa62d146bd8e8a46b51e406a52",
+              "objectType": "Undefined",
+              "primaryProperty": "CanPickup",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -1.008904218673706,
+                  "y": -0.007056146860122681,
+                  "z": -0.6736760139465333
+                },
+                "max": {
+                  "x": 1.0088999271392822,
+                  "y": 0.867723822593689,
+                  "z": 0.666823983192444
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "bathrobe",
+      "asset_id": "28fbe6cf073b44639a92d2e213ca0c30",
+      "asset_path": null,
+      "position": {
+        "x": 2.7289999999999996,
+        "y": 2.9599807262420654,
+        "z": 3.786
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 89.95437383553924
+      },
+      "scale": {
+        "x": 0.45494,
+        "y": 0.645,
+        "z": 5.0224
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.8511490821838379,
+        "bbox_pixel": [
+          694,
+          133,
+          843,
+          1030
+        ],
+        "asset_metadata": {
+          "category": "bat",
+          "category_max_scale": 0.98,
+          "category_min_scale": 0.69,
+          "description": null,
+          "pose_z_rot_angle": 1.57,
+          "ref_category": "BaseballBat",
+          "scale": 0.86,
+          "uid": "28fbe6cf073b44639a92d2e213ca0c30",
+          "z_axis_scale": false,
+          "description_auto": "A wooden baseball bat in 3D.",
+          "size": [
+            86,
+            6,
+            6
+          ],
+          "closet_objaverse_plus_asset": {
+            "uid": "d8bfd9f394104e07a844e956aee6905f",
+            "description": "A wooden baseball bat with a flat end.",
+            "similarity score": 0.7093418836593628
+          },
+          "size_annotated_by": "gpt-3.5",
+          "onFloor": true,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "refer to closet objaverse plus asset",
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "28fbe6cf073b44639a92d2e213ca0c30",
+              "objectType": "Undefined",
+              "primaryProperty": "Undefined",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.03312974989742533,
+                  "y": -0.0014013281959366697,
+                  "z": -0.3805720011170559
+                },
+                "max": {
+                  "x": 0.030836671010658068,
+                  "y": 0.06262114530968507,
+                  "z": 0.38398325508286585
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "bath towel",
+      "asset_id": "28fbe6cf073b44639a92d2e213ca0c30",
+      "asset_path": null,
+      "position": {
+        "x": 5.103,
+        "y": 3.440171241760254,
+        "z": 6.2139999999999995
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 89.95437383553924
+      },
+      "scale": {
+        "x": 0.6226400000000001,
+        "y": 0.645,
+        "z": 1.3269799999999998
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9251890778541565,
+        "bbox_pixel": [
+          1335,
+          836,
+          1539,
+          1073
+        ],
+        "asset_metadata": {
+          "category": "bat",
+          "category_max_scale": 0.98,
+          "category_min_scale": 0.69,
+          "description": null,
+          "pose_z_rot_angle": 1.57,
+          "ref_category": "BaseballBat",
+          "scale": 0.86,
+          "uid": "28fbe6cf073b44639a92d2e213ca0c30",
+          "z_axis_scale": false,
+          "description_auto": "A wooden baseball bat in 3D.",
+          "size": [
+            86,
+            6,
+            6
+          ],
+          "closet_objaverse_plus_asset": {
+            "uid": "d8bfd9f394104e07a844e956aee6905f",
+            "description": "A wooden baseball bat with a flat end.",
+            "similarity score": 0.7093418836593628
+          },
+          "size_annotated_by": "gpt-3.5",
+          "onFloor": true,
+          "onObject": true,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "refer to closet objaverse plus asset",
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "28fbe6cf073b44639a92d2e213ca0c30",
+              "objectType": "Undefined",
+              "primaryProperty": "Undefined",
+              "secondaryProperties": [],
+              "boundingBox": {
+                "min": {
+                  "x": -0.03312974989742533,
+                  "y": -0.0014013281959366697,
+                  "z": -0.3805720011170559
+                },
+                "max": {
+                  "x": 0.030836671010658068,
+                  "y": 0.06262114530968507,
+                  "z": 0.38398325508286585
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "towel",
+      "asset_id": "059b8a8301ae4ea5b79e343afa9a41ad",
+      "asset_path": null,
+      "position": {
+        "x": 5.103,
+        "y": 3.440171241760254,
+        "z": 6.2139999999999995
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 359.817495342157
+      },
+      "scale": {
+        "x": 0.5647200000000001,
+        "y": 0.585,
+        "z": 1.20354
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9581172466278076,
+        "bbox_pixel": [
+          1335,
+          836,
+          1539,
+          1073
+        ],
+        "asset_metadata": {
+          "category": "towel rack",
+          "category_max_scale": 0.81,
+          "category_min_scale": 0.55,
+          "description": "A chromed towel rack with a single beige towel hanging on it.",
+          "pose_z_rot_angle": 6.28,
+          "ref_category": "TowelHolder",
+          "scale": 0.78,
+          "uid": "059b8a8301ae4ea5b79e343afa9a41ad",
+          "z_axis_scale": false,
+          "description_auto": "a towel hanging on a wall",
+          "size": [
+            60,
+            10,
+            85
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": false,
+          "onObject": false,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "059b8a8301ae4ea5b79e343afa9a41ad",
+              "objectType": "Undefined",
+              "primaryProperty": "Static",
+              "secondaryProperties": [
+                "Receptacle"
+              ],
+              "boundingBox": {
+                "min": {
+                  "x": -0.4695033670490623,
+                  "y": -0.002828729458344288,
+                  "z": -0.04113961616133019
+                },
+                "max": {
+                  "x": 0.46949502239879376,
+                  "y": 0.6646512512467865,
+                  "z": 0.043711087897292625
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "towel",
+      "asset_id": "059b8a8301ae4ea5b79e343afa9a41ad",
+      "asset_path": null,
+      "position": {
+        "x": 5.103,
+        "y": 3.440171241760254,
+        "z": 6.2139999999999995
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 359.817495342157
+      },
+      "scale": {
+        "x": 0.5647200000000001,
+        "y": 0.585,
+        "z": 1.20354
+      },
+      "parent": "washing machine",
+      "metadata": {
+        "role": "child",
+        "confidence": 0.9581172466278076,
+        "bbox_pixel": [
+          1335,
+          836,
+          1539,
+          1073
+        ],
+        "asset_metadata": {
+          "category": "towel rack",
+          "category_max_scale": 0.81,
+          "category_min_scale": 0.55,
+          "description": "A chromed towel rack with a single beige towel hanging on it.",
+          "pose_z_rot_angle": 6.28,
+          "ref_category": "TowelHolder",
+          "scale": 0.78,
+          "uid": "059b8a8301ae4ea5b79e343afa9a41ad",
+          "z_axis_scale": false,
+          "description_auto": "a towel hanging on a wall",
+          "size": [
+            60,
+            10,
+            85
+          ],
+          "size_annotated_by": "gpt-4",
+          "onFloor": false,
+          "onObject": false,
+          "onWall": true,
+          "onCeiling": false,
+          "location_annotated_by": "gpt-4",
+          "closet_objaverse_plus_asset": null,
+          "thor_metadata": {
+            "assetMetadata": {
+              "name": "059b8a8301ae4ea5b79e343afa9a41ad",
+              "objectType": "Undefined",
+              "primaryProperty": "Static",
+              "secondaryProperties": [
+                "Receptacle"
+              ],
+              "boundingBox": {
+                "min": {
+                  "x": -0.4695033670490623,
+                  "y": -0.002828729458344288,
+                  "z": -0.04113961616133019
+                },
+                "max": {
+                  "x": 0.46949502239879376,
+                  "y": 0.6646512512467865,
+                  "z": 0.043711087897292625
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "total_objects": 14,
+    "skipped_objects": 1
+  }
+}

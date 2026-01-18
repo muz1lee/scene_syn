@@ -1,10 +1,18 @@
 from __future__ import annotations
 
+<<<<<<< HEAD
+=======
+import base64
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 from dataclasses import dataclass
 from io import BytesIO
 from typing import Any, Optional
 
 import numpy as np
+<<<<<<< HEAD
+=======
+import requests
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 from PIL import Image
 
 
@@ -19,11 +27,16 @@ class DepthEstimation:
 
 class DepthProClient:
     """
+<<<<<<< HEAD
     Depth Pro 本地客户端，使用 Apple ml-depth-pro 库进行深度估计。
+=======
+    Depth Pro REST 客户端，用于根据图像裁剪估计 Metric Depth。
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
     """
 
     def __init__(
         self,
+<<<<<<< HEAD
         device: str = "cuda",
         model_path: Optional[str] = None,
     ) -> None:
@@ -90,14 +103,77 @@ class DepthProClient:
         max_depth = float(depth_map.max())
         median_depth = float(np.median(depth_map))
 
+=======
+        endpoint: str,
+        *,
+        api_key: str | None = None,
+        timeout: int = 60,
+        session: Optional[requests.Session] = None,
+    ) -> None:
+        self.endpoint = endpoint.rstrip("/")
+        self.api_key = api_key
+        self.timeout = timeout
+        self.session = session or requests.Session()
+
+    def infer(self, crop_bytes: bytes) -> DepthEstimation:
+        payload = self._build_payload(crop_bytes)
+        headers = {"Content-Type": "application/json"}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {self.api_key}"
+        response = self.session.post(self.endpoint, json=payload, headers=headers, timeout=self.timeout)
+        response.raise_for_status()
+        data = response.json()
+        if data.get("success") is False:
+            raise RuntimeError(f"Depth Pro 推理失败: {data}")
+        depth_map = self._extract_depth_map(data)
+        stats = data.get("stats") or {}
+        if depth_map is not None and depth_map.size > 0:
+            min_depth = float(depth_map.min())
+            max_depth = float(depth_map.max())
+            median_depth = float(np.median(depth_map))
+        else:
+            min_depth = stats.get("min_depth")
+            max_depth = stats.get("max_depth")
+            median_depth = stats.get("median_depth")
+            if min_depth is not None:
+                min_depth = float(min_depth)
+            if max_depth is not None:
+                max_depth = float(max_depth)
+            if median_depth is not None:
+                median_depth = float(median_depth)
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
         return DepthEstimation(
             depth_map=depth_map,
             min_depth=min_depth,
             max_depth=max_depth,
             median_depth=median_depth,
+<<<<<<< HEAD
             raw={
                 "depth_shape": depth_map.shape,
                 "device": self.device,
             },
         )
 
+=======
+            raw=data,
+        )
+
+    def _build_payload(self, image_bytes: bytes) -> dict[str, Any]:
+        image_b64 = base64.b64encode(image_bytes).decode("utf-8")
+        return {"image": image_b64}
+
+    def _extract_depth_map(self, data: dict[str, Any]) -> np.ndarray | None:
+        if "depth_map_b64" in data:
+            return self._decode_depth_image(data["depth_map_b64"])
+        if "depth_map" in data:
+            array = np.array(data["depth_map"], dtype=np.float32)
+            return array
+        return None
+
+    @staticmethod
+    def _decode_depth_image(image_b64: str) -> np.ndarray:
+        image_bytes = base64.b64decode(image_b64)
+        image = Image.open(BytesIO(image_bytes)).convert("F")
+        return np.array(image, dtype=np.float32)
+
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac

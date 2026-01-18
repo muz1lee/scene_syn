@@ -3,7 +3,10 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from io import BytesIO
+<<<<<<< HEAD
 from pathlib import Path
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 from typing import Any, Dict, List, Optional, Tuple
 
 from PIL import Image
@@ -108,12 +111,16 @@ class SceneGraphBuilder:
         sam3_client: Optional[Sam3Client],
         depth_client: Optional[DepthProClient],
         guidance_size: Tuple[int, int],
+<<<<<<< HEAD
         output_dir: Optional[Path] = None,
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
     ) -> None:
         self.logical_planner = logical_planner
         self.sam3_client = sam3_client
         self.depth_client = depth_client
         self.guidance_size = guidance_size
+<<<<<<< HEAD
         self.output_dir = output_dir or Path("scenethesis/output")
 
         # 创建 mask 和 crop 子目录
@@ -121,6 +128,8 @@ class SceneGraphBuilder:
         self.crop_dir = self.output_dir / "crops"
         self.mask_dir.mkdir(parents=True, exist_ok=True)
         self.crop_dir.mkdir(parents=True, exist_ok=True)
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 
     def build_scene_layout(self, coarse_plan: Dict[str, Any], guidance_image: bytes) -> List[Dict[str, Any]]:
         hierarchy = self.logical_planner.plan_hierarchy(coarse_plan)
@@ -135,10 +144,13 @@ class SceneGraphBuilder:
             if not detection:
                 nodes.append(self._placeholder_node(obj, idx, hierarchy, len(objects)))
                 continue
+<<<<<<< HEAD
 
             # 保存 mask 和 crop
             mask_path, crop_path = self._save_mask_and_crop(base_image, detection, obj, idx)
 
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
             depth_est = self._estimate_depth(base_image, detection)
             pose = self._lift_pose(detection, depth_est, width, height)
             nodes.append(
@@ -149,8 +161,11 @@ class SceneGraphBuilder:
                     "confidence": detection.score,
                     "bbox_pixel": list(detection.bbox),
                     "initial_pose": pose,
+<<<<<<< HEAD
                     "mask_path": str(mask_path) if mask_path else None,
                     "crop_path": str(crop_path) if crop_path else None,
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
                 }
             )
         return nodes
@@ -239,6 +254,7 @@ class SceneGraphBuilder:
             "bbox_pixel": [0, 0, 0, 0],
             "initial_pose": {"translation": translation, "bbox": [0.2, 0.2, 0.2]},
         }
+<<<<<<< HEAD
 
     def _save_mask_and_crop(
         self,
@@ -286,3 +302,5 @@ class SceneGraphBuilder:
             print(f"⚠️ [SceneGraphBuilder] 保存 mask/crop 失败 ({label}): {exc}")
 
         return mask_path, crop_path
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac

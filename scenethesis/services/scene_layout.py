@@ -90,25 +90,32 @@ class SceneLayoutGenerator:
             asset_path = best_asset.get("asset_path")
             asset_metadata = best_asset.get("metadata", {})
 
+            # 调试输出
+            print(f"  资产路径: {asset_path}")
+            if asset_path:
+                from pathlib import Path
+                print(f"  文件存在: {Path(asset_path).exists()}")
+
             # 获取初始位姿
             initial_pose = obj_data.get("initial_pose", {})
 
-            # 计算3D位置
+            # 先计算缩放(需要用于位置计算)
+            scale = self._compute_scale(
+                initial_pose=initial_pose,
+                asset_metadata=asset_metadata,
+            )
+
+            # 计算3D位置(使用scale来确定正确的高度)
             position = self._compute_position(
                 initial_pose=initial_pose,
                 use_depth=use_depth,
+                scale=scale,
             )
 
             # 计算旋转
             rotation = self._compute_rotation(
                 asset_metadata=asset_metadata,
                 obj_data=obj_data,
-            )
-
-            # 计算缩放
-            scale = self._compute_scale(
-                initial_pose=initial_pose,
-                asset_metadata=asset_metadata,
             )
 
             # 创建3D物体
@@ -147,6 +154,7 @@ class SceneLayoutGenerator:
         self,
         initial_pose: Dict[str, Any],
         use_depth: bool = True,
+        scale: Tuple[float, float, float] = None,
     ) -> Tuple[float, float, float]:
         """
         计算物体的3D位置。
@@ -154,6 +162,7 @@ class SceneLayoutGenerator:
         Args:
             initial_pose: 初始位姿数据
             use_depth: 是否使用深度信息
+            scale: 物体的缩放尺寸
 
         Returns:
             (x, y, z) 位置坐标
@@ -162,19 +171,18 @@ class SceneLayoutGenerator:
 
         # 将归一化坐标转换为房间坐标
         # translation[0]: 归一化的x坐标 (0-1)
-        # translation[1]: 深度值 (meters)
+        # translation[1]: 深度值 (meters) - 注意这是相机到物体的距离,不是高度!
         # translation[2]: 归一化的z坐标 (0-1)
 
         x = translation[0] * self.room_size[0]  # 宽度方向
         z = translation[2] * self.room_size[2]  # 深度方向
 
-        if use_depth:
-            # 使用深度估计的深度值
-            depth_stats = initial_pose.get("depth_stats", {})
-            y = depth_stats.get("point_depth", translation[1])
+        # Y坐标(高度)应该基于物体的实际尺寸
+        # 使用scale的一半高度作为中心点高度,使物体底部接触地面
+        if scale:
+            y = scale[1] / 2.0  # 物体高度的一半,使底部在地面(y=0)
         else:
-            # 使用默认深度
-            y = translation[1]
+            y = 0.5  # 默认高度
 
         return (x, y, z)
 
@@ -314,8 +322,10 @@ class SceneLayoutGenerator:
 
         # 添加每个物体
         for obj in scene.objects:
+            print(f"处理物体: {obj.label}, asset_path={obj.asset_path}")
             if not obj.asset_path or not Path(obj.asset_path).exists():
                 # 如果没有资产文件，创建一个占位符
+                print(f"  -> 使用占位符 (asset_path={obj.asset_path}, exists={Path(obj.asset_path).exists() if obj.asset_path else 'N/A'})")
                 placeholder = trimesh.creation.box(extents=obj.scale)
                 placeholder.visual.face_colors = [100, 100, 255, 255]
 
@@ -333,7 +343,26 @@ class SceneLayoutGenerator:
             else:
                 # 加载实际的3D资产
                 try:
-                    mesh = trimesh.load(obj.asset_path)
+                    print(f"  -> 加载GLB: {obj.asset_path}")
+                    loaded = trimesh.load(obj.asset_path)
+
+                    # 如果是Scene对象,提取所有geometry并合并
+                    if isinstance(loaded, trimesh.Scene):
+                        print(f"  -> 加载的是Scene,包含 {len(loaded.geometry)} 个几何体")
+                        # 合并所有几何体
+                        meshes = []
+                        for name, geom in loaded.geometry.items():
+                            if isinstance(geom, trimesh.Trimesh):
+                                meshes.append(geom)
+                        if meshes:
+                            mesh = trimesh.util.concatenate(meshes)
+                        else:
+                            print(f"  ⚠️  Scene中没有有效的mesh")
+                            continue
+                    else:
+                        mesh = loaded
+
+                    print(f"  -> 加载成功, vertices={len(mesh.vertices)}")
 
                     # 应用缩放
                     mesh.apply_scale(obj.scale)

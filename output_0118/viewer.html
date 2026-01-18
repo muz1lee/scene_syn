@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Scene Viewer</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <strong>3D Scene Layout</strong><br>
+        拖拽旋转 | 滚轮缩放<br>
+        加载中...
+    </div>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        // 场景设置
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x333333);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(15, 10, 15);
+        camera.lookAt(5, 2, 5);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // 控制器
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+
+        // 光照
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(10, 10, 5);
+        scene.add(directionalLight);
+
+        // 网格地面
+        const gridHelper = new THREE.GridHelper(20, 20);
+        scene.add(gridHelper);
+
+        // 加载GLTF
+        const loader = new GLTFLoader();
+        loader.load(
+            'scene_layout_3d.glb',
+            function (gltf) {
+                scene.add(gltf.scene);
+                document.getElementById('info').innerHTML =
+                    '<strong>3D Scene Layout</strong><br>' +
+                    '拖拽旋转 | 滚轮缩放<br>' +
+                    '✓ 场景加载成功';
+                console.log('GLTF loaded successfully');
+            },
+            function (xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            function (error) {
+                console.error('Error loading GLTF:', error);
+                document.getElementById('info').innerHTML =
+                    '<strong>加载失败</strong><br>' + error.message;
+            }
+        );
+
+        // 动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        // 窗口调整
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+</body>
+</html>

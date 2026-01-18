@@ -108,6 +108,7 @@ def run_scenethesis_system(config: Dict[str, Any]) -> None:
             endpoint=endpoint,
             default_text_prompt=sam3_cfg.get("text_prompt"),
         )
+<<<<<<< HEAD
     # Depth Pro 本地部署，不再需要 endpoint 配置
     depth_client = DepthProClient(device="cuda")
 
@@ -116,13 +117,30 @@ def run_scenethesis_system(config: Dict[str, Any]) -> None:
     if not refiner_output_dir:
         refiner_output_dir = Path(__file__).resolve().parent / "output"
 
+=======
+    depth_client = None
+    depth_cfg = scene_graph_cfg.get("depth_pro") or {}
+    depth_endpoint = depth_cfg.get("endpoint")
+    if depth_endpoint:
+        depth_client = DepthProClient(
+            endpoint=depth_endpoint,
+            api_key=depth_cfg.get("api_key"),
+        )
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
     scene_graph_builder = SceneGraphBuilder(
         logical_planner=logical_planner,
         sam3_client=sam3_client,
         depth_client=depth_client,
         guidance_size=guidance_size,
+<<<<<<< HEAD
         output_dir=refiner_output_dir,
     )
+=======
+    )
+    refiner_output_dir = phase2_output_dir or output_dir
+    if not refiner_output_dir:
+        refiner_output_dir = Path(__file__).resolve().parent / "output"
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
     refiner = VisualRefinementModule(
         asset_database=assets,
         env_map_database=env_maps,
@@ -131,7 +149,10 @@ def run_scenethesis_system(config: Dict[str, Any]) -> None:
         guidance_size=guidance_size,
         image_format=image_format,
         scene_graph_builder=scene_graph_builder,
+<<<<<<< HEAD
         llm_provider=llm_provider,
+=======
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
     )
 
     plan = planner.run_pipeline(prompt)

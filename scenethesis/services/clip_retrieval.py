@@ -280,10 +280,15 @@ class CLIPRetrieval:
 
             # Simple substring matching
             if label.lower() in asset_category or asset_category in label.lower():
-                # Get asset path
-                asset_path = self.assets_base_path / f"{asset_id}.glb"
+                # Get asset path - try .glb in subdirectory first, then root .glb, then .pkl.gz
+                asset_path = self.assets_base_path / asset_id / f"{asset_id}.glb"
                 if not asset_path.exists():
-                    asset_path = None
+                    asset_path = self.assets_base_path / f"{asset_id}.glb"
+                    if not asset_path.exists():
+                        # Try objathor format: asset_id/asset_id.pkl.gz
+                        asset_path = self.assets_base_path / asset_id / f"{asset_id}.pkl.gz"
+                        if not asset_path.exists():
+                            asset_path = None
 
                 matching_assets.append(
                     AssetMatch(
@@ -354,10 +359,15 @@ class CLIPRetrieval:
             asset_id = asset_ids[idx]
             similarity = float(similarities[idx])
 
-            # Get asset path
-            asset_path = self.assets_base_path / f"{asset_id}.glb"
+            # Get asset path - try .glb in subdirectory first, then root .glb, then .pkl.gz
+            asset_path = self.assets_base_path / asset_id / f"{asset_id}.glb"
             if not asset_path.exists():
-                asset_path = None
+                asset_path = self.assets_base_path / f"{asset_id}.glb"
+                if not asset_path.exists():
+                    # Try objathor format: asset_id/asset_id.pkl.gz
+                    asset_path = self.assets_base_path / asset_id / f"{asset_id}.pkl.gz"
+                    if not asset_path.exists():
+                        asset_path = None
 
             # Get metadata
             metadata = self._annotations.get(asset_id, {})

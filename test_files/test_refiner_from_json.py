@@ -109,6 +109,7 @@ def main() -> None:
             default_text_prompt=sam3_cfg.get("text_prompt"),
         )
 
+<<<<<<< HEAD
     # 使用本地 Depth Pro（不需要 endpoint）
     depth_client = None
     depth_cfg = scene_graph_cfg.get("depth_pro") or {}
@@ -120,6 +121,16 @@ def main() -> None:
         print(f"✓ [Test] 初始化本地 Depth Pro (device={device})")
     except Exception as exc:
         print(f"⚠️ [Test] 无法初始化 Depth Pro: {exc}")
+=======
+    depth_client = None
+    depth_cfg = scene_graph_cfg.get("depth_pro") or {}
+    depth_endpoint = depth_cfg.get("endpoint")
+    if depth_endpoint:
+        depth_client = DepthProClient(
+            endpoint=depth_endpoint,
+            api_key=depth_cfg.get("api_key"),
+        )
+>>>>>>> 3837743f33baf1cb5645a8ce728f2e90d31c73ac
 
     scene_graph_builder = SceneGraphBuilder(
         logical_planner=logical_planner,
